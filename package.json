@@ -1,0 +1,28 @@
+{
+  "name": "fema-nfhl-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for FEMA National Flood Hazard Layer (NFHL) — flood zone lookups, FIRM panels, BFEs, LOMRs, and LOMAs",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["mcp", "fema", "nfhl", "flood-zone", "flood-insurance", "gis", "arcgis"],
+  "author": "Revex-Agency",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Revex-Agency/fema-nfhl-mcp.git"
+  },
+  "homepage": "https://github.com/Revex-Agency/fema-nfhl-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
