@@ -4,6 +4,8 @@ An MCP (Model Context Protocol) server that gives AI assistants direct access to
 
 Built on the [official FEMA ArcGIS REST API](https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer).
 
+Built by **[Revex.agency](https://revex.agency)**.
+
 ---
 
 ## Tools
@@ -19,36 +21,45 @@ Built on the [official FEMA ArcGIS REST API](https://hazards.fema.gov/arcgis/res
 
 ---
 
-## Requirements
+## Remote Usage (No Setup Required)
 
-- Node.js 18+
-- npm
+The server is deployed at:
 
----
-
-## Installation
-
-```bash
-git clone https://github.com/Revex-Agency/fema-nfhl-mcp.git
-cd fema-nfhl-mcp
-npm install
-npm run build
+```
+https://fema-nfhl-mcp.vercel.app/api/mcp
 ```
 
+### Claude.ai (Browser)
+
+1. Go to [claude.ai](https://claude.ai) → **Settings** → **Integrations**
+2. Click **Add custom MCP**
+3. Enter the URL: `https://fema-nfhl-mcp.vercel.app/api/mcp`
+4. All 6 flood tools are immediately available in your conversations
+
+### Any MCP-Compatible Client
+
+Add the remote server URL to your client's MCP configuration. No Node.js, no `npm install`, no build step required.
+
 ---
 
-## Usage
+## Local Installation
+
+### Quick Start (npm)
+
+```bash
+npx fema-nfhl-mcp
+```
 
 ### Cursor
 
-Add to your `.cursor/config.json`:
+Add to `.cursor/config.json`:
 
 ```json
 {
   "mcpServers": {
-    "floodzone": {
-      "command": "node",
-      "args": ["C:\\path\\to\\fema-nfhl-mcp\\dist\\index.js"]
+    "fema-nfhl": {
+      "command": "npx",
+      "args": ["fema-nfhl-mcp"]
     }
   }
 }
@@ -61,22 +72,53 @@ Add to `%AppData%\Claude\claude_desktop_config.json` (Windows) or `~/Library/App
 ```json
 {
   "mcpServers": {
-    "floodzone": {
-      "command": "node",
-      "args": ["/absolute/path/to/fema-nfhl-mcp/dist/index.js"]
+    "fema-nfhl": {
+      "command": "npx",
+      "args": ["fema-nfhl-mcp"]
     }
   }
 }
 ```
 
-### Development (no build step)
+---
+
+## Development
+
+### Requirements
+
+- Node.js 18+
+- npm
+
+### Setup
+
+```bash
+git clone https://github.com/Revex-Agency/fema-nfhl-mcp.git
+cd fema-nfhl-mcp
+npm install
+npm run build
+```
+
+### Run from Source (no build step)
 
 ```json
 {
   "mcpServers": {
-    "floodzone": {
+    "fema-nfhl": {
       "command": "npx",
       "args": ["tsx", "src/index.ts"]
+    }
+  }
+}
+```
+
+### Run from Build
+
+```json
+{
+  "mcpServers": {
+    "fema-nfhl": {
+      "command": "node",
+      "args": ["/absolute/path/to/fema-nfhl-mcp/dist/src/index.js"]
     }
   }
 }
