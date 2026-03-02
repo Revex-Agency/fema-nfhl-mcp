@@ -36,9 +36,12 @@ export default async function handler(
     return;
   }
 
-  // Stateless: create a fresh server instance per request
+  // Stateless: create a fresh server instance per request.
+  // enableJsonResponse forces a single JSON reply instead of an open SSE stream,
+  // which is required for serverless environments like Vercel.
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
+    enableJsonResponse: true,
   });
 
   const server = new McpServer({ name: "fema-nfhl", version: "1.0.0" });
